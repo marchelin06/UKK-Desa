@@ -78,6 +78,8 @@ class SuratController extends Controller
     {
         $surat = Surat::with('user')->findOrFail($id);
 
+        // dd($surat->data_tambahan['lampiran']);
+
         return view('surat.show', compact('surat'));
     }
 

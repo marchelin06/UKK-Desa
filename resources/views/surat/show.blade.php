@@ -138,16 +138,19 @@
         </p>
         <p><span class="label">Tipe Pengajuan:</span> <span class="value">{{ ucfirst($surat->tipe_pengajuan ?? 'manual') }}</span></p>
 
-        @if(is_array($dataTambahan) && count($dataTambahan) > 0)
+        @if(is_array($surat->data_tambahan) && count($surat->data_tambahan) > 0)
             <hr>
             <p class="label">Data Tambahan:</p>
             <ul>
-                @foreach($dataTambahan as $key => $val)
-                    @continue($key === 'lampiran')
+                @foreach($surat->data_tambahan as $key => $val)
+                    @if($key === 'lampiran')
                     <li>
                         <strong>{{ ucwords(str_replace('_', ' ', $key)) }}:</strong>
-                        {{ is_array($val) ? json_encode($val) : $val }}
+                        <img src="{{asset('storage')}}/{{ is_array($val) ? json_encode($val) : $val }}" alt="">
+                        <!-- <strong>{{ ucwords(str_replace('_', ' ', $key)) }}:</strong>
+                        {{ is_array($val) ? json_encode($val) : $val }} -->
                     </li>
+                    @endif
                 @endforeach
             </ul>
         @endif
