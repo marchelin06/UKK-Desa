@@ -23,10 +23,9 @@
                 <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">📄 Pelayanan Surat-Menyurat Digital</a></li>
                 <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">🏠 Manajemen Inventaris Aset Desa</a></li>
                 <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">📢 Layanan Pengaduan Masyarakat</a></li>
-                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">🗓️ Manajemen Kegiatan & Program Desa</a></li>
             </ul>
         </li>
-
+sa</a></li>
         {{-- Menu tambahan --}}
         <li><a href="{{ route('dashboard.warga') }}" class="hover:text-gray-200 font-semibold">📊 Dashboard</a></li>
         <li><a href="{{ route('login') }}" class="hover:text-gray-200 font-semibold">🔐 Login</a></li>

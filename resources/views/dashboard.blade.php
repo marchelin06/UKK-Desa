@@ -4,161 +4,201 @@
 @section('content')
 <style>
     .page-dashboard {
-        max-width: 1100px;
-        margin: 30px auto;
-        padding: 0 15px;
-        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        font-family: 'Poppins', sans-serif;
     }
 
     .dash-header {
-        margin-bottom: 25px;
-        text-align: left;
+        margin-bottom: 40px;
     }
 
-    .dash-title {
-        font-size: 28px;
+    .dash-greeting {
+        font-size: 36px;
         font-weight: 700;
-        color: #1b3b2f;
-        margin-bottom: 5px;
+        color: #1b5e20;
+        margin-bottom: 8px;
     }
 
-    .dash-subtitle {
-        font-size: 14px;
-        color: #555;
+    .dash-subtext {
+        font-size: 15px;
+        color: #666;
     }
 
     .dash-grid {
         display: grid;
-        grid-template-columns: 2fr 1.2fr;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
 
-    .card {
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 20px 22px;
-    }
-
-    .card-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 12px;
-        color: #1b3b2f;
-    }
-
-    .quick-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 5px;
-    }
-
-    .btn-dash {
-        display: inline-block;
-        border-radius: 999px;
-        padding: 8px 16px;
-        font-size: 13px;
-        font-weight: 600;
-        text-decoration: none;
-        border: 1px solid transparent;
+    .quick-action-card {
+        background: linear-gradient(135deg, #fff 0%, #f9fbf7 100%);
+        border-radius: 16px;
+        border: 2px solid #e8f5e9;
+        padding: 28px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(27, 94, 32, 0.08);
         cursor: pointer;
-        transition: all 0.15s ease;
-        white-space: nowrap;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
     }
 
-    .btn-dash-primary {
-        background: #1a7f5a;
-        color: #fff;
-        border-color: #1a7f5a;
+    .quick-action-card:hover {
+        border-color: #43a047;
+        box-shadow: 0 8px 24px rgba(67, 160, 71, 0.15);
+        transform: translateY(-6px);
     }
 
-    .btn-dash-primary:hover {
-        background: #145c42;
-        border-color: #145c42;
+    .quick-action-icon {
+        font-size: 40px;
+        height: 40px;
     }
 
-    .btn-dash-outline {
-        background: #f4f6f8;
-        color: #1b3b2f;
-        border-color: #d0d4da;
+    .quick-action-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1b5e20;
     }
 
-    .btn-dash-outline:hover {
-        background: #e3e7ec;
+    .quick-action-desc {
+        font-size: 12px;
+        color: #888;
+        line-height: 1.4;
     }
 
-    .user-info-list {
-        list-style: none;
-        padding-left: 0;
-        margin-bottom: 0;
-        font-size: 13px;
-        color: #333;
+    .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1b5e20;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
-    .user-info-list li {
+    .section-title::before {
+        content: '';
+        width: 4px;
+        height: 28px;
+        background: linear-gradient(180deg, #43a047 0%, #66bb6a 100%);
+        border-radius: 2px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .info-card {
+        background: #ffffff;
+        border-radius: 14px;
+        border: 1px solid rgba(67, 160, 71, 0.1);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(27, 94, 32, 0.08);
+        transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+        box-shadow: 0 8px 20px rgba(27, 94, 32, 0.12);
+    }
+
+    .info-label {
+        font-size: 12px;
+        color: #999;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         margin-bottom: 6px;
     }
 
-    .badge-role {
-        display: inline-block;
-        padding: 3px 8px;
-        border-radius: 999px;
-        font-size: 11px;
-        font-weight: 600;
-        background: #e3f2fd;
-        color: #1565c0;
-        margin-left: 4px;
+    .info-value {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1b5e20;
+        word-break: break-word;
     }
 
-    .services-grid {
+    .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 15px;
-        margin-top: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+        margin-bottom: 40px;
     }
 
-    .service-item {
-        border-radius: 10px;
-        border: 1px solid #e2e5e9;
-        padding: 14px 14px 12px;
-        background: #f9fbf7;
+    .stat-card {
+        background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+        border-radius: 12px;
+        padding: 16px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);
     }
 
-    .service-title {
-        font-size: 14px;
-        font-weight: 600;
+    .stat-number {
+        font-size: 28px;
+        font-weight: 700;
         margin-bottom: 4px;
-        color: #1b3b2f;
     }
 
-    .service-desc {
+    .stat-label {
         font-size: 12px;
-        color: #666;
-        margin-bottom: 8px;
+        opacity: 0.9;
     }
 
-    .service-link {
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #f1f8f5 0%, #e8f5e9 100%);
+        border-radius: 16px;
+        border: 2px dashed #a5d6a7;
+    }
+
+    .empty-state-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+
+    .empty-state-text {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 16px;
+    }
+
+    .badge-info {
+        display: inline-block;
+        background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+        color: #1b5e20;
+        padding: 4px 12px;
+        border-radius: 20px;
         font-size: 12px;
         font-weight: 600;
-        color: #1a7f5a;
-        text-decoration: none;
     }
 
-    .service-link:hover {
-        text-decoration: underline;
-    }
+    @media (max-width: 768px) {
+        .page-dashboard {
+            padding: 20px 15px;
+        }
 
-    .hint-text {
-        font-size: 12px;
-        color: #777;
-        margin-top: 8px;
-    }
+        .dash-greeting {
+            font-size: 26px;
+        }
 
-    @media (max-width: 830px) {
         .dash-grid {
-            grid-template-columns: 1fr;
+            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .section-title {
+            font-size: 18px;
         }
     }
 </style>
@@ -168,92 +208,59 @@
 @endphp
 
 <div class="page-dashboard">
-    {{-- HEADER --}}
+    {{-- GREETING HEADER --}}
     <div class="dash-header">
-        <h1 class="dash-title">Selamat Datang di Dashboard</h1>
-        <p class="dash-subtitle">
-            Halo, <strong>{{ $u->name ?? 'Warga' }}</strong>
-            <span class="badge-role">Warga Desa</span>
-            <br>
-            Dari sini kamu bisa mengajukan surat, melihat inventaris desa, dan mengakses layanan lain.
-        </p>
+        <div class="dash-greeting">
+            Halo, {{ explode(' ', $u->name ?? 'Warga')[0] }} 👋
+        </div>
+        <div class="dash-subtext">
+            Selamat datang di dashboard Anda. Kelola layanan desa dengan mudah.
+        </div>
     </div>
 
-    {{-- GRID UTAMA --}}
+    {{-- QUICK ACTIONS GRID --}}
     <div class="dash-grid">
-        {{-- KARTU AKTIVITAS CEPAT --}}
-        <div class="card">
-            <h2 class="card-title">Aktivitas Cepat</h2>
-            <p style="font-size:13px; color:#555; margin-bottom:10px;">
-                Beberapa tindakan yang paling sering digunakan disatukan di sini agar kamu tidak perlu bolak-balik menu.
-            </p>
+        <a href="{{ route('surat.index') }}" class="quick-action-card">
+            <div class="quick-action-icon">📋</div>
+            <div class="quick-action-title">Ajukan Surat</div>
+            <div class="quick-action-desc">Buat pengajuan surat desa baru</div>
+        </a>
 
-            <div class="quick-actions">
-                <a href="{{ route('surat.index') }}" class="btn-dash btn-dash-primary">
-                    ✉️ Ajukan Surat Desa
-                </a>
+        <a href="{{ route('surat.index') }}" class="quick-action-card">
+            <div class="quick-action-icon">📊</div>
+            <div class="quick-action-title">Riwayat Surat</div>
+            <div class="quick-action-desc">Lihat status pengajuan Anda</div>
+        </a>
 
-                <a href="{{ route('surat.index') }}#riwayat" class="btn-dash btn-dash-outline">
-                    📄 Lihat Riwayat Surat
-                </a>
+        <a href="{{ route('kegiatan.index') }}" class="quick-action-card">
+            <div class="quick-action-icon">🎉</div>
+            <div class="quick-action-title">Kegiatan Desa</div>
+            <div class="quick-action-desc">Lihat kegiatan desa</div>
+        </a>
 
-                <a href="{{ route('inventaris.public') }}" class="btn-dash btn-dash-outline">
-                    🏛️ Lihat Inventaris Desa
-                </a>
-            </div>
+        <a href="{{ route('inventaris.public') }}" class="quick-action-card">
+            <div class="quick-action-icon">🏛️</div>
+            <div class="quick-action-title">Inventaris</div>
+            <div class="quick-action-desc">Aset desa yang tersedia</div>
+        </a>
 
-            <div class="hint-text">
-                Tip: gunakan <strong>Pengajuan Online Lengkap</strong> di menu Surat agar proses di kantor desa lebih cepat.
-            </div>
-        </div>
+        <a href="{{ route('pengaduan.create') }}" class="quick-action-card">
+            <div class="quick-action-icon">💬</div>
+            <div class="quick-action-title">Pengaduan</div>
+            <div class="quick-action-desc">Sampaikan masukan Anda</div>
+        </a>
 
-        {{-- KARTU INFO AKUN --}}
-        <div class="card">
-            <h2 class="card-title">Profil Singkat Akun</h2>
-            <ul class="user-info-list">
-                <li><strong>Nama:</strong> {{ $u->name ?? '-' }}</li>
-                <li><strong>Email:</strong> {{ $u->email ?? '-' }}</li>
-                <li>
-                    <strong>Bergabung sejak:</strong>
-                    {{ $u->created_at?->format('d-m-Y') ?? '-' }}
-                </li>
-            </ul>
-
-            <p class="hint-text">
-                Pastikan data akunmu selalu aktif. Jika ada perubahan identitas, sampaikan ke perangkat desa saat datang ke kantor.
-            </p>
-        </div>
+        <a href="{{ route('pengaduan.riwayat') }}" class="quick-action-card">
+            <div class="quick-action-icon">📝</div>
+            <div class="quick-action-title">Riwayat Pengaduan</div>
+            <div class="quick-action-desc">Lihat pengaduan yang Anda kirim</div>
+        </a>
     </div>
 
-    {{-- LAYANAN DESA --}}
-    <div class="card">
-        <h2 class="card-title">Layanan Desa yang Tersedia</h2>
-
-        <div class="services-grid">
-            <div class="service-item">
-                <div class="service-title">Surat Menyurat Desa</div>
-                <div class="service-desc">
-                    Ajukan berbagai jenis surat seperti domisili, SKTM, pengantar KTP, dan lainnya secara online.
-                </div>
-                <a href="{{ route('surat.index') }}" class="service-link">Buka layanan surat →</a>
-            </div>
-
-            <div class="service-item">
-                <div class="service-title">Inventaris Desa</div>
-                <div class="service-desc">
-                    Transparansi aset desa: lihat daftar barang, fasilitas, dan sarana yang dimiliki dan dikelola desa.
-                </div>
-                <a href="{{ route('inventaris.public') }}" class="service-link">Lihat inventaris →</a>
-            </div>
-
-            <div class="service-item">
-                <div class="service-title">Informasi & Panduan</div>
-                <div class="service-desc">
-                    Ikuti informasi di menu <strong>Beranda</strong> untuk mengetahui pengumuman dan jadwal pelayanan terbaru.
-                </div>
-                <a href="{{ route('home') }}" class="service-link">Kembali ke beranda →</a>
-            </div>
-        </div>
+    {{-- HELPFUL INFO --}}
+    <div style="background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%); border-left: 4px solid #fbc02d; border-radius: 12px; padding: 16px; margin-bottom: 20px; font-size: 14px; color: #856404;">
+        <strong>💡 Tip:</strong> Gunakan menu <strong>Layanan Publik</strong> di sidebar kiri untuk mengakses semua fitur dengan mudah.
     </div>
 </div>
+
 @endsection

@@ -6,6 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KegiatanController;
 
 // --------------------------
 // BERANDA
@@ -17,10 +20,8 @@ Route::get('/', function () {
 // --------------------------
 // LOGIN & REGISTER
 // --------------------------
-Route::get('/login', fn () => view('auth.login'))->name('login');
-
-Route::get('/login/user', [AuthController::class, 'showLoginForm'])->name('login.user');
-Route::post('/login/user', [AuthController::class, 'login'])->name('login.user.post');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::get('/login/admin', [AdminAuthController::class, 'loginForm'])->name('login.admin');
 Route::post('/login/admin', [AdminAuthController::class, 'login'])->name('login.admin.post');
@@ -44,6 +45,14 @@ Route::middleware(['auth', 'role:warga'])->group(function () {
     // Inventaris (WARGA HANYA BISA LIHAT)
     Route::get('/inventaris', [InventarisController::class, 'publicIndex'])
         ->name('inventaris.public');
+});
+
+// --------------------------
+// KEGIATAN (UNTUK SEMUA AUTHENTICATED USER)
+// --------------------------
+Route::middleware('auth')->group(function () {
+    Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
+    Route::get('/kegiatan/{kegiatan}', [KegiatanController::class, 'show'])->name('kegiatan.show');
 });
 
 // --------------------------
@@ -76,31 +85,40 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/inventaris/{id}', [InventarisController::class, 'update'])->name('inventaris.update');
 
     Route::delete('/admin/inventaris/{id}', [InventarisController::class, 'destroy'])->name('inventaris.destroy');
+
+    // MANAJEMEN PENGADUAN — ADMIN MELIHAT DAFTAR PENGADUAN
+    Route::get('/admin/pengaduan', [PengaduanController::class, 'adminIndex'])->name('pengaduan.index');
+    Route::get('/admin/pengaduan/{id}', [PengaduanController::class, 'show'])->name('pengaduan.show');
+
+    // MANAJEMEN KEGIATAN — CRUD khusus admin
+    Route::get('/admin/kegiatan', [KegiatanController::class, 'index'])->name('admin.kegiatan');
+    Route::get('/admin/kegiatan/create', [KegiatanController::class, 'create'])->name('admin.kegiatan.create');
+    Route::post('/admin/kegiatan', [KegiatanController::class, 'store'])->name('admin.kegiatan.store');
+    Route::get('/admin/kegiatan/{kegiatan}', [KegiatanController::class, 'show'])->name('admin.kegiatan.show');
+    Route::get('/admin/kegiatan/{kegiatan}/edit', [KegiatanController::class, 'edit'])->name('admin.kegiatan.edit');
+    Route::put('/admin/kegiatan/{kegiatan}', [KegiatanController::class, 'update'])->name('admin.kegiatan.update');
+    Route::delete('/admin/kegiatan/{kegiatan}', [KegiatanController::class, 'destroy'])->name('admin.kegiatan.destroy');
 });
 
 // --------------------------
-// LAYANAN PUBLIK
+// LAYANAN PUBLIK (WARGA)
 // --------------------------
 
-// Surat
-Route::get('/layanan/surat-menyurat', function () {
-    return redirect()->route('surat.index');
-})->middleware('auth')->name('layanan.surat');
-
-// Inventaris
-Route::get('/layanan/inventaris', function () {
-
-    if (Auth::user()->role === 'admin') {
-        // admin ke halaman CRUD
-        return redirect()->route('inventaris.index');
-    }
-
-    // warga ke halaman lihat saja
-    return redirect()->route('inventaris.public');
-
-})->middleware('auth')->name('layanan.inventaris');
+// Pengaduan - HANYA UNTUK WARGA
+Route::middleware(['auth', 'role:warga'])->group(function () {
+    Route::get('/layanan/pengaduan', [PengaduanController::class, 'create'])->name('pengaduan.create');
+    Route::post('/layanan/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
+    Route::get('/layanan/riwayat-pengaduan', [PengaduanController::class, 'riwayat'])->name('pengaduan.riwayat');
+});
 
 // --------------------------
 // LOGOUT
 // --------------------------
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// --------------------------
+// PROFILE (authenticated users only)
+// --------------------------
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+});
