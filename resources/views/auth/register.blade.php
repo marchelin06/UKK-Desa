@@ -241,28 +241,6 @@
                     @enderror
                 </div>
 
-                {{-- NIK --}}
-                <div class="form-group">
-                    <label for="nik">NIK</label>
-                    <input type="text" id="nik" name="nik" class="form-control @error('nik') is-invalid @enderror"
-                        placeholder="Masukkan NIK (opsional)" value="{{ old('nik') }}">
-                    <small class="form-info">Opsional</small>
-                    @error('nik')
-                        <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                {{-- No HP --}}
-                <div class="form-group">
-                    <label for="no_hp">No HP</label>
-                    <input type="text" id="no_hp" name="no_hp" class="form-control @error('no_hp') is-invalid @enderror"
-                        placeholder="Masukkan nomor HP (opsional)" value="{{ old('no_hp') }}">
-                    <small class="form-info">Opsional</small>
-                    @error('no_hp')
-                        <span class="error-message">{{ $message }}</span>
-                    @enderror
-                </div>
-
                 {{-- Email --}}
                 <div class="form-group">
                     <label for="email">Email *</label>
