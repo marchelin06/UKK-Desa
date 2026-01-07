@@ -42,14 +42,16 @@
             <div class="mb-3 form-group">
                 <label>Nama Barang</label>
                 <input type="text" name="nama_barang" class="form-control"
-                       value="{{ old('nama_barang', $item->nama_barang) }}">
+                       value="{{ old('nama_barang', $item->nama_barang) }}"
+                       @if(auth()->user()->role === 'admin') readonly @endif>
                 @error('nama_barang') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="mb-3 form-group">
                 <label>Kode Barang (opsional)</label>
                 <input type="text" name="kode_barang" class="form-control"
-                       value="{{ old('kode_barang', $item->kode_barang) }}">
+                       value="{{ old('kode_barang', $item->kode_barang) }}"
+                       @if(auth()->user()->role === 'admin') readonly @endif>
                 @error('kode_barang') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
@@ -57,7 +59,8 @@
                 <div class="col-md-4 mb-3 form-group">
                     <label>Jumlah</label>
                     <input type="number" name="jumlah" class="form-control" min="0"
-                           value="{{ old('jumlah', $item->jumlah) }}">
+                           value="{{ old('jumlah', $item->jumlah) }}"
+                           @if(auth()->user()->role === 'admin') readonly @endif>
                     @error('jumlah') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
@@ -75,19 +78,26 @@
                 <div class="col-md-4 mb-3 form-group">
                     <label>Lokasi</label>
                     <input type="text" name="lokasi" class="form-control"
-                           value="{{ old('lokasi', $item->lokasi) }}">
+                           value="{{ old('lokasi', $item->lokasi) }}"
+                           @if(auth()->user()->role === 'admin') readonly @endif>
                     @error('lokasi') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
 
             <div class="mb-3 form-group">
                 <label>Keterangan (opsional)</label>
-                <textarea name="keterangan" rows="3" class="form-control">{{ old('keterangan', $item->keterangan) }}</textarea>
+                <textarea name="keterangan" rows="3" class="form-control"
+                          @if(auth()->user()->role === 'admin') readonly @endif>{{ old('keterangan', $item->keterangan) }}</textarea>
                 @error('keterangan') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
             <button class="btn btn-primary" type="submit">Update</button>
             <a href="{{ route('inventaris.index') }}" class="btn btn-secondary">Batal</a>
+            @if(auth()->user()->role === 'admin')
+            <small class="d-block mt-2 text-muted">
+                ℹ️ Sebagai admin, Anda hanya dapat mengubah kondisi barang. Data lainnya tidak dapat diubah.
+            </small>
+            @endif
         </form>
     </div>
 </div>

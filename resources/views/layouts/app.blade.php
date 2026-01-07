@@ -24,6 +24,11 @@
             margin: 0;
             padding: 0;
         }
+        nav.sidebar,
+        footer, 
+        section.hero .hero-text a {
+            background : darkgreen !important;
+        }
 
         body {
             background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f5 100%);
@@ -39,7 +44,7 @@
 
         .sidebar {
             width: 260px;
-            background: linear-gradient(180deg, #1b5e20 0%, #2e7d32 100%);
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
             position: fixed;
             left: 0;
             top: 0;
@@ -78,6 +83,7 @@
             list-style: none;
             padding: 15px 0;
             margin: 0;
+            padding-bottom: 130px;
         }
 
         .sidebar-nav li {
@@ -114,6 +120,64 @@
             height: 1px;
             background: rgba(255, 255, 255, 0.1);
             margin: 10px 0;
+        }
+
+        .sidebar-profile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 260px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .profile-avatar {
+            font-size: 32px;
+            color: #a5d6a7;
+            min-width: 32px;
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .profile-name {
+            margin: 0;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-role {
+            margin: 4px 0 0 0;
+            font-size: 11px;
+        }
+
+        .badge-admin {
+            background: #66bb6a;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-user {
+            background: #43a047;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-block;
         }
 
         .toggle-sidebar {
@@ -225,22 +289,22 @@
         }
 
         .btn-green {
-            background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
             color: white;
             border-radius: 30px;
             padding: 12px 28px;
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
-            box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);
+            box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
             text-decoration: none;
             display: inline-block;
         }
 
         .btn-green:hover {
-            background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+            background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
             color: #fff;
-            box-shadow: 0 6px 18px rgba(46, 125, 50, 0.4);
+            box-shadow: 0 6px 18px rgba(27, 94, 32, 0.4);
             transform: translateY(-2px);
         }
 
@@ -300,7 +364,7 @@
         }
 
         .btn-primary-rounded {
-            background: linear-gradient(135deg, #1a7f5a 0%, #2e7d32 100%);
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
             border: none;
             color: #fff;
             padding: 10px 20px;
@@ -309,13 +373,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(26, 127, 90, 0.3);
+            box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
         }
 
         .btn-primary-rounded:hover {
-            background: linear-gradient(135deg, #145c42 0%, #1a7f5a 100%);
+            background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
             color: #fff;
-            box-shadow: 0 6px 18px rgba(26, 127, 90, 0.4);
+            box-shadow: 0 6px 18px rgba(27, 94, 32, 0.4);
             transform: translateY(-2px);
         }
 

@@ -375,7 +375,7 @@
                 <div class="info-value">{{ ucfirst($surat->tipe_pengajuan ?? 'online') }}</div>
             </div>
 
-            @if($surat->estimasi_selesai)
+            @if($surat->estimasi_selesai && $status !== 'ditolak')
             <div class="info-item">
                 <div class="info-label">Estimasi Selesai</div>
                 <div class="info-value">{{ $surat->estimasi_selesai->format('d-m-Y H:i') }}</div>
@@ -399,7 +399,7 @@
         </div>
         @endif
 
-        @if($surat->alasan_penolakan)
+        @if($surat->alasan_penolakan && auth()->user()->role === 'admin')
         <div class="divider"></div>
         <div style="background: #fdecea; border-radius: 10px; padding: 16px; border-left: 4px solid #c62828;">
             <div class="info-label" style="color: #b02a37; margin-bottom: 8px;">⚠️ Alasan Penolakan</div>
@@ -494,7 +494,7 @@
             @csrf
             <input type="hidden" name="status" id="statusInput" value="{{ $surat->status }}">
 
-            <div class="form-group">
+            <div class="form-group" id="estimasiGroup">
                 <label for="estimasi_selesai">📅 Estimasi Surat Selesai</label>
                 <input type="datetime-local"
                        name="estimasi_selesai"
@@ -560,7 +560,17 @@
     function submitKeputusan(status) {
         const statusInput = document.getElementById('statusInput');
         const estimasiInput = document.getElementById('estimasi_selesai');
+        const estimasiGroup = document.getElementById('estimasiGroup');
         const alasanInput = document.getElementById('alasan_penolakan');
+
+        // Hide estimasi jika status ditolak
+        if (status === 'ditolak') {
+            estimasiGroup.style.display = 'none';
+            estimasiInput.value = '';
+            estimasiInput.removeAttribute('required');
+        } else {
+            estimasiGroup.style.display = 'block';
+        }
 
         statusInput.value = status;
 
@@ -581,5 +591,15 @@
 
         document.getElementById('formKeputusan').submit();
     }
+
+    // Show/hide estimasi berdasarkan status awal
+    document.addEventListener('DOMContentLoaded', function() {
+        const statusInput = document.getElementById('statusInput');
+        const estimasiGroup = document.getElementById('estimasiGroup');
+        
+        if (statusInput.value === 'ditolak') {
+            estimasiGroup.style.display = 'none';
+        }
+    });
 </script>
 @endsection

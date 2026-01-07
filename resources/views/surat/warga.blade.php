@@ -16,6 +16,33 @@
 
     .page-surat-header {
         margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .btn-back {
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .btn-back:hover {
+        background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
+        color: white;
+        transform: translateX(-3px);
     }
 
     .page-surat-title {
@@ -292,10 +319,15 @@
 <div class="page-surat">
     {{-- HEADER --}}
     <div class="page-surat-header">
-        <h1 class="page-surat-title">Pengajuan Surat Desa</h1>
-        <p class="page-surat-subtitle">
-            Ajukan permohonan surat keterangan secara online. Pastikan data yang Anda isi sudah benar.
-        </p>
+        <div>
+            <h1 class="page-surat-title">Pengajuan Surat Desa</h1>
+            <p class="page-surat-subtitle">
+                Ajukan permohonan surat keterangan secara online. Pastikan data yang Anda isi sudah benar.
+            </p>
+        </div>
+        <a href="{{ route('dashboard') }}" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
     </div>
 
     {{-- NOTIFIKASI --}}
@@ -363,7 +395,7 @@
                         <div class="form-group mt-2">
                             <label for="nik">NIK (Nomor Induk Kependudukan)</label>
                             <input type="text" name="nik" id="nik" class="form-control"
-                                   value="{{ old('nik') }}" placeholder="16 digit NIK pada KTP" maxlength="16">
+                                   value="{{ old('nik') }}" placeholder="16 digit NIK pada KTP" maxlength="16" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="alamat_ktp">Alamat sesuai KTP</label>
@@ -381,12 +413,12 @@
                         <div class="form-group">
                             <label for="rt_domisili">RT (Rukun Tetangga)</label>
                             <input type="text" name="rt_domisili" id="rt_domisili" class="form-control"
-                                   value="{{ old('rt_domisili') }}" placeholder="Contoh: 001">
+                                   value="{{ old('rt_domisili') }}" placeholder="Contoh: 001" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="rw_domisili">RW (Rukun Warga)</label>
                             <input type="text" name="rw_domisili" id="rw_domisili" class="form-control"
-                                   value="{{ old('rw_domisili') }}" placeholder="Contoh: 003">
+                                   value="{{ old('rw_domisili') }}" placeholder="Contoh: 003" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="alamat_domisili">Alamat Lengkap Domisili Saat Ini</label>
@@ -420,7 +452,7 @@
                         <div class="form-group">
                             <label for="no_hp_domisili">Nomor HP yang dapat dihubungi</label>
                             <input type="text" name="no_hp_domisili" id="no_hp_domisili" class="form-control"
-                                   value="{{ old('no_hp_domisili') }}" placeholder="Contoh: 08xxxxxxxxxx">
+                                   value="{{ old('no_hp_domisili') }}" placeholder="Contoh: 08xxxxxxxxxx" inputmode="numeric">
                         </div>
                     </div>
 
@@ -434,7 +466,7 @@
                         <div class="form-group mt-2">
                             <label for="nik_usaha">NIK Pemilik</label>
                             <input type="text" name="nik_usaha" id="nik_usaha" class="form-control"
-                                   value="{{ old('nik_usaha') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_usaha') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric">
                         </div>
 
                         <h4 style="margin-top:15px; margin-bottom:10px; color:#1b5e20; font-weight:600;">Informasi Usaha</h4>
@@ -497,7 +529,7 @@
                         <div class="form-group">
                             <label for="no_hp_usaha">Nomor HP yang dapat dihubungi</label>
                             <input type="text" name="no_hp_usaha" id="no_hp_usaha" class="form-control"
-                                   value="{{ old('no_hp_usaha') }}" placeholder="Contoh: 08xxxxxxxxxx">
+                                   value="{{ old('no_hp_usaha') }}" placeholder="Contoh: 08xxxxxxxxxx" inputmode="numeric">
                         </div>
                     </div>
 
@@ -512,7 +544,7 @@
                         <div class="form-group">
                             <label for="nik_sktm">NIK (Nomor Induk Kependudukan)</label>
                             <input type="text" name="nik_sktm" id="nik_sktm" class="form-control"
-                                   value="{{ old('nik_sktm') }}" placeholder="16 digit NIK pada KTP" maxlength="16">
+                                   value="{{ old('nik_sktm') }}" placeholder="16 digit NIK pada KTP" maxlength="16" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="nama_sktm">Nama Lengkap</label>
@@ -522,7 +554,7 @@
                         <div class="form-group">
                             <label for="no_hp_sktm">Nomor HP yang dapat dihubungi</label>
                             <input type="text" name="no_hp_sktm" id="no_hp_sktm" class="form-control"
-                                   value="{{ old('no_hp_sktm') }}" placeholder="Contoh: 08xxxxxxxxxx">
+                                   value="{{ old('no_hp_sktm') }}" placeholder="Contoh: 08xxxxxxxxxx" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="alamat_sktm">Alamat Lengkap (Dusun/RT/RW)</label>
@@ -606,14 +638,59 @@
                         <h4 style="margin-top:15px; margin-bottom:10px; color:#1b5e20; font-weight:600;">Data Pribadi</h4>
 
                         <div class="form-group mt-2">
-                            <label for="nik_ktp">NIK</label>
+                            <label for="nik_ktp">NIK <span style="color:red;">*</span></label>
                             <input type="text" name="nik_ktp" id="nik_ktp" class="form-control"
-                                   value="{{ old('nik_ktp') }}" placeholder="16 digit NIK (kosongkan jika hilang)" maxlength="16">
+                                   value="{{ old('nik_ktp') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric" required>
                         </div>
                         <div class="form-group">
                             <label for="nama_ktp">Nama Lengkap</label>
                             <input type="text" name="nama_ktp" id="nama_ktp" class="form-control"
                                    value="{{ old('nama_ktp') }}" placeholder="Sesuai kartu keluarga">
+                        </div>
+                        <div class="form-group">
+                            <label for="tempat_lahir_ktp">Tempat Lahir</label>
+                            <input type="text" name="tempat_lahir_ktp" id="tempat_lahir_ktp" class="form-control"
+                                   value="{{ old('tempat_lahir_ktp') }}" placeholder="Nama kota/kabupaten">
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_lahir_ktp">Tanggal Lahir</label>
+                            <input type="date" name="tanggal_lahir_ktp" id="tanggal_lahir_ktp" class="form-control"
+                                   value="{{ old('tanggal_lahir_ktp') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="jenis_kelamin_ktp">Jenis Kelamin</label>
+                            <select name="jenis_kelamin_ktp" id="jenis_kelamin_ktp" class="form-select">
+                                <option value="">-- Pilih --</option>
+                                <option value="Laki-laki" {{ old('jenis_kelamin_ktp')=='Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                <option value="Perempuan" {{ old('jenis_kelamin_ktp')=='Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="agama_ktp">Agama</label>
+                            <select name="agama_ktp" id="agama_ktp" class="form-select">
+                                <option value="">-- Pilih Agama --</option>
+                                <option value="Islam" {{ old('agama_ktp')=='Islam' ? 'selected' : '' }}>Islam</option>
+                                <option value="Kristen" {{ old('agama_ktp')=='Kristen' ? 'selected' : '' }}>Kristen</option>
+                                <option value="Katolik" {{ old('agama_ktp')=='Katolik' ? 'selected' : '' }}>Katolik</option>
+                                <option value="Hindu" {{ old('agama_ktp')=='Hindu' ? 'selected' : '' }}>Hindu</option>
+                                <option value="Buddha" {{ old('agama_ktp')=='Buddha' ? 'selected' : '' }}>Buddha</option>
+                                <option value="Konghucu" {{ old('agama_ktp')=='Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pekerjaan_ktp">Pekerjaan</label>
+                            <input type="text" name="pekerjaan_ktp" id="pekerjaan_ktp" class="form-control"
+                                   value="{{ old('pekerjaan_ktp') }}" placeholder="Contoh: Petani, Karyawan, dll.">
+                        </div>
+                        <div class="form-group">
+                            <label for="status_perkawinan_ktp">Status Perkawinan</label>
+                            <select name="status_perkawinan_ktp" id="status_perkawinan_ktp" class="form-select">
+                                <option value="">-- Pilih Status --</option>
+                                <option value="Belum Kawin" {{ old('status_perkawinan_ktp')=='Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
+                                <option value="Kawin" {{ old('status_perkawinan_ktp')=='Kawin' ? 'selected' : '' }}>Kawin</option>
+                                <option value="Cerai Hidup" {{ old('status_perkawinan_ktp')=='Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
+                                <option value="Cerai Mati" {{ old('status_perkawinan_ktp')=='Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="alamat_ktp_ktp">Alamat Sesuai KTP</label>
@@ -648,7 +725,7 @@
                         <div class="form-group">
                             <label for="no_hp_ktp">Nomor HP yang dapat dihubungi</label>
                             <input type="text" name="no_hp_ktp" id="no_hp_ktp" class="form-control"
-                                   value="{{ old('no_hp_ktp') }}" placeholder="Contoh: 08xxxxxxxxxx">
+                                   value="{{ old('no_hp_ktp') }}" placeholder="Contoh: 08xxxxxxxxxx" inputmode="numeric">
                         </div>
                     </div>
 
@@ -701,9 +778,9 @@
                                    value="{{ old('nama_ayah') }}" placeholder="Nama lengkap ayah">
                         </div>
                         <div class="form-group">
-                            <label for="nik_ayah">NIK Ayah (opsional)</label>
+                            <label for="nik_ayah">NIK Ayah <span style="color:red;">*</span></label>
                             <input type="text" name="nik_ayah" id="nik_ayah" class="form-control"
-                                   value="{{ old('nik_ayah') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_ayah') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric" required>
                         </div>
                         <div class="form-group">
                             <label for="nama_ibu">Nama Ibu</label>
@@ -711,14 +788,27 @@
                                    value="{{ old('nama_ibu') }}" placeholder="Nama lengkap ibu">
                         </div>
                         <div class="form-group">
-                            <label for="nik_ibu">NIK Ibu (opsional)</label>
+                            <label for="nik_ibu">NIK Ibu <span style="color:red;">*</span></label>
                             <input type="text" name="nik_ibu" id="nik_ibu" class="form-control"
-                                   value="{{ old('nik_ibu') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_ibu') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_kk_kelahiran">Nomor Kartu Keluarga <span style="color:red;">*</span></label>
+                            <input type="text" name="no_kk_kelahiran" id="no_kk_kelahiran" class="form-control"
+                                   value="{{ old('no_kk_kelahiran') }}" placeholder="16 digit No KK" maxlength="16" inputmode="numeric" required>
                         </div>
                         <div class="form-group">
                             <label for="alamat_orangtua">Alamat Orang Tua</label>
                             <textarea name="alamat_orangtua" id="alamat_orangtua" rows="2" class="form-control"
                                       placeholder="Alamat lengkap dengan RT/RW">{{ old('alamat_orangtua') }}</textarea>
+                        </div>
+
+                        <h4 style="margin-top:15px; margin-bottom:10px; color:#1b5e20; font-weight:600;">Lampiran Dokumen</h4>
+
+                        <div class="form-group">
+                            <label for="lampiran_kelahiran">Lampiran Dokumen Pendukung <span style="color:red;">*</span></label>
+                            <input type="file" name="lampiran_kelahiran" id="lampiran_kelahiran" class="form-control" required>
+                            <small style="color:#888;">Upload dokumen pendukung (surat bersalin, buku kesehatan ibu-anak, dll.). Format: PDF, JPG, PNG. Max: 5MB</small>
                         </div>
                     </div>
 
@@ -737,7 +827,7 @@
                         <div class="form-group">
                             <label for="nik_almarhum">NIK Almarhum/Almarhumah</label>
                             <input type="text" name="nik_almarhum" id="nik_almarhum" class="form-control"
-                                   value="{{ old('nik_almarhum') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_almarhum') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="umur_almarhum">Usia Saat Meninggal (tahun)</label>
@@ -805,7 +895,7 @@
                         <div class="form-group">
                             <label for="nik_calon_suami">NIK Calon Suami</label>
                             <input type="text" name="nik_calon_suami" id="nik_calon_suami" class="form-control"
-                                   value="{{ old('nik_calon_suami') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_calon_suami') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="tempat_lahir_suami">Tempat/Tanggal Lahir (opsional)</label>
@@ -833,7 +923,7 @@
                         <div class="form-group">
                             <label for="nik_calon_istri">NIK Calon Istri</label>
                             <input type="text" name="nik_calon_istri" id="nik_calon_istri" class="form-control"
-                                   value="{{ old('nik_calon_istri') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_calon_istri') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="tempat_lahir_istri">Tempat/Tanggal Lahir (opsional)</label>
@@ -881,7 +971,7 @@
                         <div class="form-group mt-2">
                             <label for="nik_belum_menikah">NIK</label>
                             <input type="text" name="nik_belum_menikah" id="nik_belum_menikah" class="form-control"
-                                   value="{{ old('nik_belum_menikah') }}" placeholder="16 digit NIK" maxlength="16">
+                                   value="{{ old('nik_belum_menikah') }}" placeholder="16 digit NIK" maxlength="16" inputmode="numeric">
                         </div>
                         <div class="form-group">
                             <label for="nama_belum_menikah">Nama Lengkap</label>
@@ -1051,15 +1141,6 @@
                     </div>
 
                 </div> {{-- /section-online-wrapper --}}
-
-                {{-- LAMPIRAN DOKUMEN OPSIONAL --}}
-                <div id="section-lampiran-wrapper" class="form-group" style="display:none; margin-top:10px;">
-                    <label for="lampiran">Lampiran Dokumen Pendukung (opsional)</label>
-                    <input type="file" name="lampiran" id="lampiran" class="form-control" accept="image/*,.pdf">
-                    <small id="lampiran_hint" class="mode-help">
-                        Upload foto / scan dokumen pendukung bila sudah ada.
-                    </small>
-                </div>
 
                 <button type="submit" class="btn-primary">
                     Ajukan Surat
@@ -1373,17 +1454,106 @@
         function getRequiredFieldsForSurat(jenisSurat) {
             const requiredFields = {
                 'Surat Domisili': ['nik', 'alamat_ktp', 'dusun_domisili', 'rt_domisili', 'rw_domisili', 'alamat_domisili', 'tanggal_mulai_tinggal', 'lama_tinggal', 'alasan_domisili', 'no_hp_domisili'],
-                'Surat Keterangan Usaha': ['nik_usaha', 'nama_usaha', 'alamat_usaha', 'jenis_usaha', 'tanggal_mulai_usaha', 'lama_usaha', 'modal_usaha', 'jumlah_karyawan', 'no_hp_usaha'],
+                'Surat Keterangan Usaha': ['nik_usaha', 'nama_usaha', 'alamat_usaha', 'jenis_usaha', 'tanggal_mulai_usaha', 'modal_usaha', 'jumlah_karyawan', 'no_hp_usaha'],
                 'Surat Pengantar KTP': ['nik_ktp', 'nama_ktp', 'alamat_ktp_ktp', 'jenis_permohonan', 'alasan_permohonan', 'no_hp_ktp'],
-                'Surat Kelahiran': ['nama_bayi', 'jenis_kelamin_bayi', 'tempat_lahir_bayi', 'tanggal_lahir_bayi', 'berat_bayi', 'panjang_bayi', 'nama_ayah', 'nama_ibu', 'alamat_orangtua'],
-                'Surat Kematian': ['nama_almarhum', 'nik_almarhum', 'umur_almarhum', 'alamat_almarhum', 'tanggal_meninggal', 'tempat_meninggal', 'sebab_meninggal', 'hubungan_pemohon'],
-                'Surat Keterangan Tidak Mampu': ['nik_sktm', 'nama_sktm', 'alamat_sktm', 'status_pekerjaan', 'penghasilan_bulanan', 'jumlah_anggota_keluarga', 'status_rumah', 'tujuan_sktm'],
+                'Surat Kelahiran': ['nama_bayi', 'jenis_kelamin_bayi', 'tempat_lahir_bayi', 'tanggal_lahir_bayi', 'berat_bayi', 'panjang_bayi', 'nama_ayah', 'nik_ayah', 'nama_ibu', 'nik_ibu', 'alamat_orangtua', 'no_kk_kelahiran', 'lampiran_kelahiran'],
+                'Surat Kematian': ['nama_almarhum', 'nik_almarhum', 'umur_almarhum', 'alamat_almarhum', 'tanggal_meninggal', 'tempat_meninggal', 'hubungan_pemohon'],
+                'Surat Keterangan Tidak Mampu': ['nik_sktm', 'nama_sktm', 'alamat_sktm', 'status_pekerjaan', 'penghasilan_bulanan', 'jumlah_anggota_keluarga', 'status_rumah', 'tujuan_sktm', 'no_hp_sktm'],
                 'Surat Pengantar KUA': ['nama_calon_suami', 'nik_calon_suami', 'alamat_calon_suami', 'pekerjaan_suami', 'nama_calon_istri', 'nik_calon_istri', 'alamat_calon_istri', 'pekerjaan_istri', 'tanggal_nikah', 'tempat_nikah'],
                 'Surat Keterangan Belum Menikah': ['nik_belum_menikah', 'nama_belum_menikah', 'alamat_belum_menikah', 'tujuan_belum_menikah', 'instansi_belum_menikah'],
                 'Surat Keterangan Tanah': ['lokasi_tanah', 'luas_tanah', 'peruntukan', 'batas_utara', 'batas_selatan', 'batas_timur', 'batas_barat', 'status_tanah'],
                 'Surat Undangan Rapat': ['tipe_rapat', 'judul_rapat', 'agenda_rapat', 'tanggal_rapat', 'waktu_rapat', 'tempat_rapat', 'penerima_undangan', 'penanggung_jawab']
             };
             return requiredFields[jenisSurat] || [];
+        }
+
+        // Validasi Input: NIK - hanya angka, 16 digit
+        const nikInputs = document.querySelectorAll('#nik, #nik_usaha, #nik_ktp, #nik_almarhum, #nik_sktm, #nik_calon_suami, #nik_calon_istri, #nik_belum_menikah');
+        nikInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 16) {
+                    this.value = this.value.slice(0, 16);
+                }
+            });
+        });
+
+        // Validasi Input: RT dan RW - hanya angka
+        const rtRwInputs = document.querySelectorAll('#rt_domisili, #rw_domisili');
+        rtRwInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+        // Validasi Input: No. HP - hanya angka, 10-13 digit
+        const phoneInputs = document.querySelectorAll('#no_hp_domisili, #no_hp_usaha, #no_hp_sktm, #no_hp_ktp');
+        phoneInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 13) {
+                    this.value = this.value.slice(0, 13);
+                }
+            });
+
+            input.addEventListener('blur', function() {
+                if (this.value.length > 0 && (this.value.length < 10 || this.value.length > 13)) {
+                    alert('Nomor HP harus 10-13 digit!');
+                    this.focus();
+                }
+            });
+        });
+
+        // Validasi Tanggal Mulai Tinggal (Domisili) - tidak boleh maju dari hari ini
+        const tglMulaiTinggal = document.getElementById('tanggal_mulai_tinggal');
+        if (tglMulaiTinggal) {
+            const today = new Date().toISOString().split('T')[0];
+            tglMulaiTinggal.max = today;
+        }
+
+        // Tanggal Lahir Bayi dan Tanggal Meninggal - bisa maju atau mundur (tanpa batasan)
+        // Jadi tidak perlu ada validasi khusus, biarkan user memilih tanggal apapun
+
+        // Validasi Lama Usaha berdasarkan Tanggal Mulai Usaha
+        const tglMulaiUsaha = document.getElementById('tanggal_mulai_usaha');
+        const lamaUsaha = document.getElementById('lama_usaha');
+        
+        if (tglMulaiUsaha && lamaUsaha) {
+            const checkLamaUsaha = () => {
+                const tglMulai = new Date(tglMulaiUsaha.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (tglMulai < today) {
+                    lamaUsaha.required = true;
+                    lamaUsaha.style.borderColor = '#dc3545';
+                } else {
+                    lamaUsaha.required = false;
+                    lamaUsaha.style.borderColor = '';
+                }
+            };
+            
+            tglMulaiUsaha.addEventListener('change', checkLamaUsaha);
+        }
+
+        // Validasi Jam Undangan Rapat - jika tanggal = hari ini, jam tidak boleh sebelum jam sekarang
+        const tglRapat = document.getElementById('tanggal_rapat');
+        const jamRapat = document.getElementById('waktu_rapat');
+        
+        if (tglRapat && jamRapat) {
+            const checkJamRapat = () => {
+                const tglRapatVal = tglRapat.value;
+                const today = new Date().toISOString().split('T')[0];
+                
+                if (tglRapatVal === today) {
+                    const now = new Date().toTimeString().slice(0, 5);
+                    jamRapat.min = now;
+                } else {
+                    jamRapat.min = '';
+                }
+            };
+            
+            tglRapat.addEventListener('change', checkJamRapat);
         }
     });
 </script>

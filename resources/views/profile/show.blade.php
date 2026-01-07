@@ -18,7 +18,31 @@
         margin-bottom: 30px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .btn-back {
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .btn-back:hover {
+        background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
+        color: white;
+        transform: translateX(-3px);
     }
 
     .card {
@@ -147,10 +171,15 @@
 
 <div class="page-content">
     {{-- PAGE TITLE --}}
-    <h1 class="page-title">
-        <i class="fas fa-user-circle"></i>
-        Profil Saya
-    </h1>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <h1 class="page-title">
+            <i class="fas fa-user-circle"></i>
+            Profil Saya
+        </h1>
+        <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+    </div>
 
     {{-- PROFILE CARD --}}
     <div class="card">

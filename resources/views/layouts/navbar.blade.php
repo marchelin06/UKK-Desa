@@ -32,17 +32,19 @@
 
         <div class="sidebar-divider"></div>
 
-        {{-- Layanan Publik Button (toggles modal) --}}
-        <li>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#servicesModal">
-                <i class="fas fa-cogs"></i>
-                <span>Layanan Publik</span>
-            </a>
-        </li>
+        {{-- Layanan Publik Button (only for warga/non-admin users) --}}
+        @auth
+            @if(auth()->user()->role !== 'admin')
+            <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#servicesModal">
+                    <i class="fas fa-cogs"></i>
+                    <span>Layanan Publik</span>
+                </a>
+            </li>
+            @endif
+        @endauth
 
         <div class="sidebar-divider"></div>
-
-        {{-- Authentication --}}
         @auth
             <li>
                 <a href="{{ route('profile.show') }}">
@@ -76,9 +78,28 @@
             </li>
         @endauth
     </ul>
+
+    {{-- User Profile Section at Bottom --}}
+    @auth
+    <div class="sidebar-profile">
+        <div class="profile-avatar">
+            <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="profile-info">
+            <p class="profile-name">{{ auth()->user()->name }}</p>
+            <p class="profile-role">
+                @if(auth()->user()->role === 'admin')
+                    <span class="badge-admin">Admin Desa</span>
+                @else
+                    <span class="badge-user">Warga</span>
+                @endif
+            </p>
+        </div>
+    </div>
+    @endauth
 </nav>
 
-{{-- Services Modal --}}
+{{-- Services Modal (only for warga) --}}
 <div class="modal fade" id="servicesModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content services-modal-content">

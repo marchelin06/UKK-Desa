@@ -87,7 +87,7 @@
         content: '';
         width: 4px;
         height: 28px;
-        background: linear-gradient(180deg, #43a047 0%, #66bb6a 100%);
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
         border-radius: 2px;
     }
 
@@ -135,12 +135,12 @@
     }
 
     .stat-card {
-        background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
         border-radius: 12px;
         padding: 16px;
         color: white;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);
+        box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
     }
 
     .stat-number {

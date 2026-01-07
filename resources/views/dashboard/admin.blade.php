@@ -12,6 +12,33 @@
 
     .dash-header {
         margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .btn-back {
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .btn-back:hover {
+        background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
+        color: white;
+        transform: translateX(-3px);
     }
 
     .dash-greeting {
@@ -260,12 +287,17 @@
 <div class="page-dashboard">
     {{-- GREETING HEADER --}}
     <div class="dash-header">
-        <div class="dash-greeting">
-            Halo, {{ explode(' ', $admin->name ?? 'Admin')[0] }} 👋
+        <div>
+            <div class="dash-greeting">
+                Halo, {{ explode(' ', $admin->name ?? 'Admin')[0] }} 👋
+            </div>
+            <div class="dash-subtext">
+                Selamat datang. Kelola sistem desa dengan efisien.
+            </div>
         </div>
-        <div class="dash-subtext">
-            Selamat datang. Kelola sistem desa dengan efisien.
-        </div>
+        <a href="{{ route('home') }}" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
     </div>
 
     {{-- QUICK ACTIONS GRID --}}

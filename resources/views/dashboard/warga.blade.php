@@ -3,16 +3,45 @@
 @section('title', 'Dashboard Warga - Sistem Informasi Desa')
 
 @section('content')
+<style>
+    .btn-back {
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        box-shadow: 0 4px 12px rgba(27, 94, 32, 0.2);
+    }
+
+    .btn-back:hover {
+        background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
+        color: white;
+        transform: translateX(-4px);
+        box-shadow: 0 6px 16px rgba(27, 94, 32, 0.3);
+    }
+</style>
+
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
+            <a href="{{ route('home') }}" class="btn-back" style="margin-bottom: 30px;">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
 
             <div class="card card-custom">
                 <div class="card-body p-4">
 
-                    <h1 class="h4 mb-2">
+                    <h2 class="h5 mb-2">
                         Halo, {{ $user->name ?? Auth::user()->name }} 👋
-                    </h1>
+                    </h2>
 
                     <p class="text-muted mb-4">
                         Selamat datang di Sistem Informasi Desa. Ini adalah halaman khusus untuk warga

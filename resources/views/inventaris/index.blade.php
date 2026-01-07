@@ -56,6 +56,31 @@
         text-decoration: none;
     }
 
+    .btn-back {
+        background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .btn-back:hover {
+        background: linear-gradient(135deg, #145c42 0%, #1b5e20 100%);
+        box-shadow: 0 6px 18px rgba(27, 94, 32, 0.4);
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+    }
+
     .alert {
         padding: 14px 16px;
         border-radius: 12px;
@@ -219,9 +244,14 @@
             <h1 class="page-title">Inventaris Desa</h1>
             <p class="page-subtitle">Kelola aset dan barang milik desa</p>
         </div>
-        <a href="{{ route('inventaris.create') }}" class="btn-tambah">
-            <i class="fas fa-plus"></i> Tambah Barang
-        </a>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="{{ route('admin.dashboard') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            <a href="{{ route('inventaris.create') }}" class="btn-tambah">
+                <i class="fas fa-plus"></i> Tambah Barang
+            </a>
+        </div>
     </div>
 
     {{-- SUCCESS MESSAGE --}}
