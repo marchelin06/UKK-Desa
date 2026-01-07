@@ -41,6 +41,7 @@ Route::middleware(['auth', 'role:warga', 'check.profile'])->group(function () {
     // Surat untuk warga
     Route::get('/surat', [SuratController::class, 'index'])->name('surat.index');
     Route::post('/surat', [SuratController::class, 'store'])->name('surat.store');
+    Route::get('/surat/{id}/cetak', [SuratController::class, 'cetak'])->name('surat.cetak');
 
     // Inventaris (WARGA HANYA BISA LIHAT)
     Route::get('/inventaris', [InventarisController::class, 'publicIndex'])

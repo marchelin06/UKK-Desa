@@ -517,4 +517,21 @@ class SuratController extends Controller
 
         return back()->with('success', 'Surat ditolak!');
     }
+
+    // =========================
+    // CETAK SURAT (PDF)
+    // =========================
+    public function cetak($id)
+    {
+        $surat = Surat::with('user')->findOrFail($id);
+
+        // Hanya warga pemilik surat atau admin yang bisa cetak
+        if (Auth::id() !== $surat->user_id && Auth::user()->role !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
+
+        // Untuk saat ini, return view cetak
+        // Bisa dikembangkan dengan dompdf nanti untuk generate PDF
+        return view('surat.cetak', compact('surat'));
+    }
 }
